@@ -1,0 +1,4 @@
+nam
+surname: formatdate(ddd)
+c
+d
