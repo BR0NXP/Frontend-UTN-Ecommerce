@@ -1,13 +1,15 @@
-import Router from "./router/Router";
+import Router from "./router/AppRouter";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import theme from "./styles/theme";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import AppRouter from "./router/AppRouter";
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Router />
+        <AppRouter />
       </BrowserRouter>
     </ThemeProvider>
   );
