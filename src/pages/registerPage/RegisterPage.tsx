@@ -7,6 +7,23 @@ import { AuthLayout } from "../../layouts/AuthLayout";
 import { UserData } from "../../models/session/signUp";
 import { singUp } from "../../services/session/login";
 
+interface StateAlert {
+  open: boolean;
+  vertical: "bottom" | "top";
+  horizontal: "right" | "left" | "center";
+  message: string;
+  title: string;
+  error: boolean;
+}
+export const RegisterPage = () => {
+  const [alert, setAlert] = useState<StateAlert>({
+    open: false,
+    vertical: "bottom",
+    horizontal: "center",
+    message: "",
+    title: "",
+    error: false,
+  });
 
   const [userData, setUserData] = useState<UserData>({
     name: "",
@@ -136,3 +153,4 @@ import { singUp } from "../../services/session/login";
     </AuthLayout>
   );
 };
+

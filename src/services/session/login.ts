@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { Axios } from 'axios';
 import { URL_API } from "../../constants/services";
 import { UserData } from "../../models/session/signUp";
 

@@ -7,11 +7,17 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Skeleton,Stack } from '@mui/material';
 import { Row, Col, CardGroup } from 'react-bootstrap';
+import { SingleProduct } from '../../../models/products/singleProduct';
 
-export default function ProductCard() {
+type Props = {
+  products: ProductsPage;
+  handleAddToCart: (product: Products) => void 
+  
+}
+
+export const ProductCard = ({ product }: Props ) => {
   return (
     <>
-    <h3>Mas vendidos</h3> 
     <div className="container">
     <CardGroup >
     <Card sx={{ maxWidth: 250 }}>
@@ -23,78 +29,6 @@ export default function ProductCard() {
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           Mueble 1
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          $12.000 o 6 cuotas sin interés 
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Ver más</Button>
-      </CardActions>
-    </Card>
-    <Card sx={{ maxWidth: 250 }}>
-      <CardMedia
-        component="img"
-        image="https://via.placeholder.com/100"
-        alt="mueble"
-        />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Mueble 2
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          $12.000 o 6 cuotas sin interés 
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Ver más</Button>
-      </CardActions>
-    </Card>
-    <Card sx={{ maxWidth: 250 }}>
-      <CardMedia
-        component="img"
-        image="https://via.placeholder.com/100"
-        alt="mueble"
-        />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Mueble 3
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          $12.000 o 6 cuotas sin interés 
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Ver más</Button>
-      </CardActions>
-    </Card>
-    <Card sx={{ maxWidth: 250 }}>
-      <CardMedia
-        component="img"
-        image="https://via.placeholder.com/100"
-        alt="mueble"
-        />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Mueble 4
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          $12.000 o 6 cuotas sin interés 
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Ver más</Button>
-      </CardActions>
-    </Card>
-    <Card sx={{ maxWidth: 250 }}>
-      <CardMedia
-        component="img"
-        image="https://via.placeholder.com/100"
-        alt="mueble"
-        />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Mueble 5
         </Typography>
         <Typography variant="body2" color="text.secondary">
           $12.000 o 6 cuotas sin interés 
