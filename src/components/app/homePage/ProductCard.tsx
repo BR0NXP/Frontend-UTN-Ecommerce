@@ -1,45 +1,28 @@
+import { CardGroup } from "react-bootstrap";
+import { Key, useContext } from "react";
+import { HomePageContext } from "../../../pages";
+import { ProductCard } from "../../commons/cards";
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Skeleton,Stack } from '@mui/material';
-import { Row, Col, CardGroup } from 'react-bootstrap';
-import { SingleProduct } from '../../../models/products/singleProduct';
-
-type Props = {
-  products: ProductsPage;
-  handleAddToCart: (product: Products) => void 
-  
+interface ProductCardRowProps {
+  title: string;
 }
 
-export const ProductCard = ({ product }: Props ) => {
+export default function ProductCardRow({ title }: ProductCardRowProps) {
+  const { electronic, muebles } = useContext(HomePageContext);
+
   return (
     <>
-    <div className="container">
-    <CardGroup >
-    <Card sx={{ maxWidth: 250 }}>
-      <CardMedia
-        component="img"
-        image="https://via.placeholder.com/100"
-        alt="mueble"
-        />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Mueble 1
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          $12.000 o 6 cuotas sin interés 
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Ver más</Button>
-      </CardActions>
-    </Card>
-    </CardGroup>
-    </div>
+      <h3>{title}</h3>
+      <div className="container">
+        <CardGroup>
+          {electronic.electronic.data.map((product: { id: Key | null | undefined; name: string; }) => (
+            <ProductCard key={product.id} title={product.name} />
+          ))},  
+          {muebles.muebles.data.map((product: { id: Key | null | undefined; name: string; }) => (
+              <ProductCard key={product.id} title={product.name} />  
+          ))}
+        </CardGroup>
+      </div>
     </>
   );
 }
