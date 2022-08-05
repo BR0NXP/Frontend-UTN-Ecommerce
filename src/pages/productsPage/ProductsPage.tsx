@@ -1,9 +1,11 @@
 import { createContext, useCallback, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Row } from "../../models/products/allProducts";
 import { getAllProducts } from "../../services/products";
 import { Products } from "./Products";
 type ProductsPageTypes = {
   products: ProductsProps;
+  productName: string;
 };
 interface ProductsProps {
   isLoading: boolean;
@@ -19,6 +21,7 @@ export const ProductPage = () => {
     isLoading: true,
     products: { error: false, data: [] },
   });
+  const { name: productName } = useParams();
 
   const productsData = useCallback(async (controller: AbortController) => {
     const productsResponse = await getAllProducts({ controller });
@@ -55,6 +58,7 @@ export const ProductPage = () => {
     <ProductsPageContext.Provider
       value={{
         products,
+        productName: productName ? productName : "",
       }}
     >
       <Products />

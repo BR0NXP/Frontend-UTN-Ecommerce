@@ -3,9 +3,13 @@ import ProductCardRow from "../../components/app/homePage/ProductCard";
 import { HomePageContext } from "./HomePage";
 
 export const Home = () => {
-  const {
-    electronic: { isLoading: electronicLoading },
-  } = useContext(HomePageContext);
+  const { electronic } = useContext(HomePageContext);
 
-  return <>{!electronicLoading && <ProductCardRow title={"Electronica"} />}</>;
+  return (
+    <>
+      {!electronic.isLoading && (
+        <ProductCardRow title={"Electronica"} objects={electronic.electronic} />
+      )}
+    </>
+  );
 };

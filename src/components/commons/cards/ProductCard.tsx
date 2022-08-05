@@ -13,11 +13,11 @@ interface ProductCardProps {
 
 export const ProductCard = ({ title }: ProductCardProps) => {
   return (
-    <Card sx={{ maxWidth: 250 }}>
+    <Card sx={{ width: "300px" }}>
       <CardMedia
         component="img"
-        image="https://via.placeholder.com/100"
-        alt="mueble"
+        image="https://dummyimage.com/150x150/fff/aaa" 
+        alt={title}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
