@@ -9,13 +9,12 @@ import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link, useNavigate } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
 
 const Search = styled(Box)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
@@ -162,7 +161,9 @@ export default function PrimarySearchAppBar() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <Link to="/">
+              <HomeIcon />
+            </Link>
           </IconButton>
           <Typography
             sx={{ alignSelf: "center", fontSize: "16px" }}
