@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import NavBar from "../components/app/homePage/NavBar";
-import { HomePage, ProductPage, SingleProductPage } from "../pages";
-import CartPage from "../pages/cartPage/CartPage";
+import { CartPage, HomePage, ProductPage, SingleProductPage } from "../pages";
 import { LoginPage } from "../pages/loginPage/LoginPage";
 import { RegisterPage } from "../pages/registerPage/RegisterPage";
 

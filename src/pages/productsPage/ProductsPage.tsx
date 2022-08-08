@@ -17,6 +17,8 @@ interface ProductsProps {
 export const ProductsPageContext = createContext({} as ProductsPageTypes);
 
 export const ProductPage = () => {
+  const { name } = useParams();
+
   const [products, setProducts] = useState<ProductsProps>({
     isLoading: true,
     products: { error: false, data: [] },
@@ -24,7 +26,10 @@ export const ProductPage = () => {
   const { name: productName } = useParams();
 
   const productsData = useCallback(async (controller: AbortController) => {
-    const productsResponse = await getAllProducts({ controller });
+    const productsResponse = await getAllProducts({
+      controller,
+      product: name,
+    });
     if (productsResponse.status !== 200) {
       return { error: true, data: [] };
     }

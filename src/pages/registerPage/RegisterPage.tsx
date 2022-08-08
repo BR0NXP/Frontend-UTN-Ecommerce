@@ -5,7 +5,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { SnackbarMessage } from "../../components/commons/snackbars";
 import { AuthLayout } from "../../layouts/AuthLayout";
 import { UserData } from "../../models/session/signUp";
-import { singUp } from "../../services/session/login";
+import { singUp } from "../../services/session/signUp";
 
 interface StateAlert {
   open: boolean;
@@ -43,23 +43,29 @@ export const RegisterPage = () => {
   const handleSendData = async () => {
     const status = await singUp(userData);
     if (status.status === 200) {
-      return setAlert({
+      setAlert({
         ...alert,
         open: true,
         message: "Usuario creado!",
         title: "Exito!",
         error: false,
       });
+      return setUserData({
+        name: "",
+        surname: "",
+        userName: "",
+        password: "",
+      });
     }
     if (status.status === 409) {
-        return setAlert({
-            ...alert,
-      open: true,
-      message: "El usuario ya esta registrado!",
-      title: "Error!",
-      error: true,
-        });
-      }
+      return setAlert({
+        ...alert,
+        open: true,
+        message: "El usuario ya esta registrado!",
+        title: "Error!",
+        error: true,
+      });
+    }
     return setAlert({
       ...alert,
       open: true,
@@ -153,4 +159,3 @@ export const RegisterPage = () => {
     </AuthLayout>
   );
 };
-

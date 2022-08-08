@@ -6,17 +6,21 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   title: string;
+  code: string;
 }
 
-export const ProductCard = ({ title }: ProductCardProps) => {
+export const ProductCard = ({ title, code }: ProductCardProps) => {
+  const navigate = useNavigate();
+
   return (
     <Card sx={{ width: "300px" }}>
       <CardMedia
         component="img"
-        image="https://dummyimage.com/150x150/fff/aaa" 
+        image="https://dummyimage.com/150x150/fff/aaa"
         alt={title}
       />
       <CardContent>
@@ -25,7 +29,12 @@ export const ProductCard = ({ title }: ProductCardProps) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Ver más</Button>
+        <Button
+          size="small"
+          onClick={() => navigate(`/product/${code}`, { replace: true })}
+        >
+          Ver más
+        </Button>
       </CardActions>
     </Card>
   );

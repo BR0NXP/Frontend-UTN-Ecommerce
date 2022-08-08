@@ -16,7 +16,11 @@ export default function ProductCardRow({
       <div className="container">
         <CardGroup>
           {objects.data.map((product: any) => (
-            <ProductCard key={product.id} title={product.name} />
+            <ProductCard
+              key={product.id}
+              title={product.name}
+              code={product.code}
+            />
           ))}
         </CardGroup>
       </div>

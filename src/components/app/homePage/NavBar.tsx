@@ -15,6 +15,8 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link, useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { logOut } from "../../../store/features/user/logOut";
 
 const Search = styled(Box)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
@@ -54,11 +56,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const session = useAppSelector((state) => state.users.session);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [productToSearch, setProductToSearch] = useState("");
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     useState<null | HTMLElement>(null);
-  const navigate = useNavigate();
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -195,25 +199,46 @@ export default function PrimarySearchAppBar() {
             </form>
           </Search>
         </Box>
-        <Box sx={{ display: { xs: "none", md: "flex" } }}>
-          <IconButton size="large" aria-label="mis productos" color="inherit">
-            <Badge>
-              <AddShoppingCartIcon />
-            </Badge>
-            <Link to="/cart">CartPage</Link>
-          </IconButton>
-          <IconButton
-            size="large"
-            edge="end"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-            onClick={handleProfileMenuOpen}
-            color="inherit"
-          >
-            <Link to="/login">Login</Link>
-            <AccountCircle />
-          </IconButton>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          {session.data.user.name && (
+            <IconButton size="large" aria-label="mis productos" color="inherit">
+              <Badge>
+                <AddShoppingCartIcon />
+              </Badge>
+              <Link to="/cart">CartPage</Link>
+            </IconButton>
+          )}
+          {!session.data.user.name ? (
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <Link to="/login">Login</Link>
+              <AccountCircle />
+            </IconButton>
+          ) : (
+            <Box>
+              <Typography
+                sx={{ fontSize: "16px", color: "black", textAlign: "center" }}
+              >
+                Bienvenido {session.data.user.name}
+              </Typography>
+              <Typography
+                sx={{ cursor: "pointer" }}
+                onClick={() => {
+                  dispatch(logOut());
+                  window.location.reload();
+                }}
+              >
+                LogOut
+              </Typography>
+            </Box>
+          )}
         </Box>
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
           <IconButton

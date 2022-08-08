@@ -28,7 +28,7 @@ export const ProductsContainer = () => {
             margin: "2rem 0 0 0",
           }}
         >
-          <ProductCard title={product.name} />
+          <ProductCard title={product.name} code={product.code} />
         </Grid>
       ))}
     </Grid>
