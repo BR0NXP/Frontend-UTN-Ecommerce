@@ -2,6 +2,7 @@ import { createContext, useCallback, useEffect, useState } from "react";
 import { Row } from "../../models/products/allProducts";
 import { getAllProducts } from "../../services/products";
 import { Products } from "./Products";
+
 type ProductsPageTypes = {
   products: ProductsProps;
 };

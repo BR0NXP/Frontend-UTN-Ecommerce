@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import ProductCardRow from "../../components/app/homePage/ProductCard";
+import { ProductsContainer } from "../../components/app/productsPage";
 import { HomePageContext } from "./HomePage";
 
 export const Home = () => {
@@ -9,12 +10,18 @@ export const Home = () => {
   const { 
     muebles: { isLoading: mueblesisLoading },
   } = useContext( HomePageContext );  
-
-
-  return <>
-  {!electronisLoading && <ProductCardRow title={"Electronica"} />}
-  {!mueblesisLoading && <ProductCardRow title={"Muebles"} />}
-  </>;
+ 
+  return (
+  <>
+   <ProductCardRow title={"Electronica"} />
+   <ProductCardRow title={"Muebles"} />
+   
+  </>
+  
+  
+  
+  
+  )
   
   
 };

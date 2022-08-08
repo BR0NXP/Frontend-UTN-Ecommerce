@@ -9,7 +9,7 @@ import PrimarySearchAppBar from '../../components/app/homePage/NavBar';
 export const CartPage = () => {
   return (
     <>
-    <h1>Tu Carrito</h1>
+    
     <Grid 
     container
     spacing={0}
@@ -18,6 +18,7 @@ export const CartPage = () => {
     sx={{ minHeight: '100vh', backgroundColor: 'primary.main', padding: 4 }}
 
     >
+    
     <Grid item
     className='box-shadow'
     
@@ -30,6 +31,7 @@ export const CartPage = () => {
       borderRadius: 2
     }}
     >
+      <h1>Tu carrito</h1>
       <Grid item 
     className='box-product' 
     sx={{

@@ -26,7 +26,9 @@ export const ProductCard = ({ title }: ProductCardProps) => {
       </CardContent>
       <CardActions>
         <Button size="small">Ver más</Button>
+        
       </CardActions>
+      
     </Card>
   );
 };

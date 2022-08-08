@@ -159,11 +159,12 @@ export default function PrimarySearchAppBar() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            href="/"
           >
             
-            <Link to="/" >
+            
                 <HomeIcon />
-            </Link>
+            
           </IconButton>
           <Typography
             variant="h6"
@@ -184,15 +185,10 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="mis productos" color="inherit">
+            <IconButton size="large" aria-label="mis productos" color="inherit" href='cart'>
               <Badge >
                 <AddShoppingCartIcon />
-              </Badge>
-              <Link to="/cart" >
-                CartPage
-              </Link>
-              
-              
+              </Badge>              
             </IconButton>
             <IconButton
               size="large"
@@ -203,10 +199,8 @@ export default function PrimarySearchAppBar() {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
+              href='login'
             >
-              <Link to="/login">
-                Login
-                </Link> 
               <AccountCircle />
             </IconButton>
           </Box>

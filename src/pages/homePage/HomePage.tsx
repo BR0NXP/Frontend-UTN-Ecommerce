@@ -1,8 +1,10 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { ProdByCat } from "../../models/products/productsByCategory";
 import { getProductByCategory } from "../../services/products/getProductByCategory";
+import { ProductPage } from "../productsPage/ProductsPage";
+import { ProductPageContext } from "../singleProductPage/SingleProductPage";
 import { Home } from "./Home";
-export {}
+
 
 type HomePageTypes = {
   electronic: ElectronicProps;
@@ -45,6 +47,7 @@ export const HomePage = () => {
       return {
         error: true,
         data: [],
+      
       };
     }
     return {
@@ -104,11 +107,14 @@ export const HomePage = () => {
   return (
     <HomePageContext.Provider
       value={{
-        electronic,
         muebles,
+        electronic
+        
       }}
     >
       <Home />
+      
+
     </HomePageContext.Provider>
   );
 }
