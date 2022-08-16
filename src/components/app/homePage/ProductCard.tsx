@@ -1,25 +1,26 @@
 import { CardGroup } from "react-bootstrap";
-import { Key, useContext } from "react";
-import { HomePageContext } from "../../../pages";
 import { ProductCard } from "../../commons/cards";
 
 interface ProductCardRowProps {
   title: string;
+  objects: any;
 }
 
-export default function ProductCardRow({ title }: ProductCardRowProps) {
-  const { electronic, muebles } = useContext(HomePageContext);
-
+export default function ProductCardRow({
+  title,
+  objects,
+}: ProductCardRowProps) {
   return (
     <>
       <h3>{title}</h3>
       <div className="container">
-        <CardGroup>
-          {electronic.electronic.data.map((product: { id: Key | null | undefined; name: string; }) => (
-            <ProductCard key={product.id} title={product.name} />
-          ))},  
-          {muebles.muebles.data.map((product: { id: Key | null | undefined; name: string; }) => (
-              <ProductCard key={product.id} title={product.name} />  
+        <CardGroup >
+          {objects.data.map((product: any) => (
+            <ProductCard
+              key={product.id}
+              title={product.name}
+              code={product.code}
+            />
           ))}
         </CardGroup>
       </div>

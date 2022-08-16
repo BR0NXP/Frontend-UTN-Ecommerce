@@ -1,16 +1,15 @@
+import { color } from "@mui/system";
 import { createContext, useCallback, useEffect, useState } from "react";
 import { ProdByCat } from "../../models/products/productsByCategory";
 import { getProductByCategory } from "../../services/products/getProductByCategory";
 import { ProductPage } from "../productsPage/ProductsPage";
-import { ProductPageContext } from "../singleProductPage/SingleProductPage";
 import { Home } from "./Home";
-
+export {};
 
 type HomePageTypes = {
   electronic: ElectronicProps;
   muebles: MueblesProps;
 };
-
 
 export const HomePageContext = createContext({} as HomePageTypes);
 interface ElectronicProps {
@@ -27,19 +26,16 @@ interface MueblesProps {
     data: ProdByCat[];
   };
 }
-  
-
 
 export const HomePage = () => {
   const [electronic, setElectronic] = useState<ElectronicProps>({
     isLoading: true,
     electronic: { error: false, data: [] },
-  })
+  });
   const [muebles, setMuebles] = useState<MueblesProps>({
     isLoading: true,
     muebles: { error: false, data: [] },
-  }) 
-
+  });
 
   const electronicData = async (controller: AbortController) => {
     const electronicResponse = await getProductByCategory(controller, 2);
@@ -69,53 +65,41 @@ export const HomePage = () => {
     };
   };
 
-
   const dataController = useCallback(async (controller: AbortController) => {
     const electronicClean = await electronicData(controller);
+    const mueblesClean = await mueblesData(controller);
+
     setElectronic({
       isLoading: false,
       electronic: electronicClean,
-    })
-    const mueblesClean = await mueblesData (controller);
+    });
     setMuebles({
       isLoading: false,
       muebles: mueblesClean,
-    })
+    });
   }, []);
 
   useEffect(() => {
     const controller = new AbortController();
-    if (electronic.isLoading) {
+    if (electronic.isLoading && muebles.isLoading) {
       dataController(controller);
     }
     return () => {
       controller.abort();
     };
-  }, [dataController, electronic.isLoading]);
-
-  
-  useEffect(() => {
-      const controller = new AbortController();
-      if (muebles.isLoading) {
-        dataController(controller);
-      }
-      return () => {
-        controller.abort();
-      };
-    }, [dataController, muebles.isLoading]);
-
+  }, [dataController, electronic.isLoading, muebles.isLoading]);
   return (
-    <HomePageContext.Provider
+    <HomePageContext.Provider 
       value={{
         muebles,
         electronic
         
       }}
+      
     >
       <Home />
       
 
     </HomePageContext.Provider>
   );
-}
-
+};

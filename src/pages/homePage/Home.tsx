@@ -4,24 +4,16 @@ import { ProductsContainer } from "../../components/app/productsPage";
 import { HomePageContext } from "./HomePage";
 
 export const Home = () => {
-  const {
-    electronic: { isLoading: electronisLoading },
-  } = useContext(HomePageContext);
-  const { 
-    muebles: { isLoading: mueblesisLoading },
-  } = useContext( HomePageContext );  
- 
+  const { electronic, muebles } = useContext(HomePageContext);
+
   return (
-  <>
-   <ProductCardRow title={"Electronica"} />
-   <ProductCardRow title={"Muebles"} />
-   
-  </>
-  
-  
-  
-  
-  )
-  
-  
+    <>
+      {!electronic.isLoading && (
+        <ProductCardRow title={"Electronica"} objects={electronic.electronic} />
+      )}
+      {!muebles.isLoading && (
+        <ProductCardRow title={"Muebles"} objects={muebles.muebles} />
+      )}
+    </>
+  );
 };

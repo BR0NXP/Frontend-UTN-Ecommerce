@@ -4,11 +4,16 @@ import { AllProducts } from "../../models/products/allProducts";
 
 interface getAllProductsProps {
   controller: AbortController;
+  product: string | undefined;
 }
 
-export const getAllProducts = async ({ controller }: getAllProductsProps) => {
+export const getAllProducts = async ({
+  controller,
+  product,
+}: getAllProductsProps) => {
   try {
     const settings = {
+      params: { productName: product },
       signal: controller.signal,
     };
 
@@ -16,7 +21,7 @@ export const getAllProducts = async ({ controller }: getAllProductsProps) => {
       URL_API + "/products/allProducts",
       settings
     );
-    return { status, data:data.rows };
+    return { status, data: data.rows };
   } catch (err) {
     return { status: 500, data: [] };
   }
